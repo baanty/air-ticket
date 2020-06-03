@@ -11,7 +11,15 @@
 
 	<div ng-controller="HelloWorldCtrl">
 		<h2>{{message}}</h2>
+		<label for="country" class="text-secondary">Enter Country Name</label>       
+            <input type="text" name="country" id="country" ng-model="country" ng-keyup="cname(country)" placeholder="Search country" class="form-control" />  
+            <ul class="list-group" ng-hide="hidethis">
+               <li class="list-group-item" ng-repeat="country_info in filterCountry" ng-click="fillInputBox(country_info)">{{country_info}}</li>
+            </ul>
+            <div> </div>
+            <p id="pText" class="text-info">You Selected <strong>{{ country }}</strong></p>
 	</div>
+
 
 </body>
 </html>
