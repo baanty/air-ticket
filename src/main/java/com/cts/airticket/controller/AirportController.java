@@ -55,10 +55,23 @@ public class AirportController {
 		Double destXCorordinate = Double.valueOf(dests.get(0).get("airportXCordinate").toString());
 		Double destYCorordinate = Double.valueOf(dests.get(0).get("airportYCordinate").toString());
 
-		double lon1 = Math.toRadians(originXCorordinate);
-		double lon2 = Math.toRadians(destXCorordinate);
-		double lat1 = Math.toRadians(originYCorordinate);
-		double lat2 = Math.toRadians(destYCorordinate);
+		return calulateFare(originXCorordinate, destXCorordinate, originYCorordinate, destYCorordinate);
+
+	}
+	
+	/**
+	 * Calculate the fare offered by the airline.
+	 * @param longitudeOne
+	 * @param longitudeTwo
+	 * @param lattitudeOne
+	 * @param lattitudeTwo
+	 * @return
+	 */
+	public double calulateFare(double longitudeOne, double longitudeTwo, double lattitudeOne, double  lattitudeTwo) {
+		double lon1 = Math.toRadians(longitudeOne);
+		double lon2 = Math.toRadians(longitudeTwo);
+		double lat1 = Math.toRadians(lattitudeOne);
+		double lat2 = Math.toRadians(lattitudeTwo);
 
 		// Haversine formula
 		double dlon = lon2 - lon1;
@@ -73,7 +86,6 @@ public class AirportController {
 		// calculate the result
 		double offered = farePerKilometer * (c * r);
 		return offered;
-
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
