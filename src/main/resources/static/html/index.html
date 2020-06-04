@@ -22,7 +22,7 @@
             <ul class="list-group" ng-hide="hidethis">
                <li class="list-group-item" 
 				ng-repeat="airport_info in allairports" 
-				ng-click="fillInputBox(airport_info.airportDescription)">{{airport_info.airportDescription}}</li>
+				ng-click="fillInputBox(airport_info.airportDescription, airport_info.airportCode)">{{airport_info.airportDescription}}</li>
             </ul>
             <div> </div>
             <p id="pText" class="text-info">You Selected <strong>{{ airport }}</strong> Origin</p>
@@ -43,10 +43,13 @@
             <ul class="list-group" ng-hide="desthidethis">
                <li class="list-group-item" 
 				ng-repeat="airport_info in destallairports" 
-				ng-click="destfillInputBox(airport_info.airportDescription)">{{airport_info.airportDescription}}</li>
+				ng-click="destfillInputBox(airport_info.airportDescription, airport_info.airportCode)">{{airport_info.airportDescription}}</li>
             </ul>
             <div> </div>
             <p id="pText" class="text-info">You Selected <strong>{{ destairport }}</strong> Destination</p>
+			
+			
+			<label for="offeredprice" class="text-secondary" ng-hide="hideofferprice">You are offered a ticket price - {{offeredprice}}</label>
 	</div>
 
 

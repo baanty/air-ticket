@@ -16,9 +16,11 @@ angular.module("app", []).controller(
 
 			};
 
-			$scope.fillInputBox = function(string) {
-				$scope.airport = string;
+			$scope.fillInputBox = function(description, code) {
+				$scope.airport = description;
 				$scope.hidethis = true;
+				$scope.origincode = code;
+				$scope.ticketPriceCalculationFunction();
 			};
 			
 			
@@ -38,9 +40,27 @@ angular.module("app", []).controller(
 
 			};
 
-			$scope.destfillInputBox = function(string) {
-				$scope.destairport = string;
+			$scope.destfillInputBox = function(description, code) {
+				$scope.destairport = description;
 				$scope.desthidethis = true;
+				$scope.destcode = code;
+				$scope.ticketPriceCalculationFunction();
 			};
+			
+			
+			/** Ticket price calculation **/
+			$scope.ticketPriceCalculationFunction = function() {
+				
+				if ( $scope.destcode != null & $scope.origincode != null ) {
+					$scope.hideofferprice = false;
+					$http.get('../calculateOfferPrice/' + $scope.origincode + '/' + $scope.destcode ).then(
+						function succes(response) {
+							$scope.offeredprice = response.data;
+						});
+				} else {
+					$scope.hideofferprice = true;
+				}
 
+			};
+			
 		});
